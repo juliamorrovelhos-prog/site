@@ -1,152 +1,434 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Julia | Portfólio</title>
-    <meta
-      name="description"
-      content="Portfólio de Julia, estudante do Afesu/Senai com interesse em tecnologia, redes, Excel e IA generativa."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="container nav">
-        <div class="logo">J<span>.</span></div>
-        <nav>
-          <a href="#sobre">Sobre</a>
-          <a href="#cursos">Cursos</a>
-          <a href="#hobbies">Hobbies</a>
-          <a href="#objetivos">Objetivos</a>
-        </nav>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOTANÉA | Natural Skin Care</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --verde:#7b3fb2;
+  --escuro:#2f1d3d;
+  --creme:#f7f1ff;
+  --branco:#fffdfd;
+  --texto:#2f2137;
+  --cinza:#7b667e;
+  --borda:#e9dff5;
+  --cartao:#fffdfd;
+  --dourado:#b99dd7;
+}
+
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth;scroll-padding-top:90px}
+body {background:var(--branco);color:var(--texto);font-family:"DM Sans",sans-serif;transition:.3s}
+body.escuro {
+  --creme:#1f1a2b;--branco:#241c31;--texto:#f4edf7;
+  --cinza:#d2c3df;--borda:#4f3b62;--cartao:#302741;
+  --verde:#c9a9f0;--escuro:#1a1224;
+}
+a {color:inherit;text-decoration:none}
+button,input,select {font:inherit}
+button {cursor:pointer}
+
+header {
+  min-height:75px;padding:15px 5%;display:flex;align-items:center;
+  justify-content:space-between;gap:15px;position:sticky;top:0;
+  z-index:10;background:var(--branco);border-bottom:1px solid var(--borda);
+}
+.logo {font-family:"Playfair Display",serif;font-size:1.4rem;color:var(--verde);font-weight:600}
+.logo small {display:block;font: .55rem "DM Sans",sans-serif;letter-spacing:2px}
+nav,.acoes {display:flex;align-items:center;gap:15px}
+nav a {font-size:.85rem;color:var(--cinza)}
+nav a:hover {color:var(--dourado)}
+.acoes input,.filtros select {
+  padding:10px;border:1px solid var(--borda);border-radius:25px;
+  background:var(--cartao);color:var(--texto);max-width:175px;
+}
+.acoes button {border:0;border-radius:25px;background:var(--verde);color:white;padding:10px}
+#menu-btn {display:none}
+
+.hero {
+  min-height:520px;display:flex;align-items:center;padding:60px 8%;color:white;
+  background:linear-gradient(90deg,#3b1f4eeb,#3a244e52),
+  url("https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1800&q=85") center/cover;
+}
+.hero-content {max-width:600px}
+.etiqueta {color:var(--dourado);font-size:.72rem;font-weight:bold;letter-spacing:2px;margin-bottom:15px}
+h1,h2 {font-family:"Playfair Display",serif;font-weight:500}
+.hero h1 {font-size:clamp(2.6rem,5vw,4.5rem);line-height:1.12;margin-bottom:20px}
+.hero p:not(.etiqueta) {line-height:1.8;margin-bottom:25px}
+.botao {display:inline-block;padding:13px 20px;border:1px solid var(--verde);border-radius:7px;background:var(--verde);color:white;font-size:.85rem;font-weight:bold;transition:.2s}
+.botao:hover {opacity:.85;transform:translateY(-2px)}
+.botao-claro {background:transparent;border-color:white;margin-left:8px}
+
+.secao {padding:70px 7%;text-align:center}
+h2 {font-size:clamp(2rem,3vw,3rem);margin-bottom:12px}
+.subtitulo {color:var(--cinza);margin-bottom:25px}
+.filtros {display:flex;justify-content:flex-end;gap:10px;margin-bottom:25px}
+.produtos {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;text-align:left}
+.produto {border:1px solid var(--borda);border-radius:12px;overflow:hidden;background:var(--cartao);transition:.25s}
+.produto:hover {transform:translateY(-5px);box-shadow:0 12px 30px #00000012}
+.produto img {width:100%;height:230px;object-fit:cover;background:var(--creme)}
+.produto-info {padding:15px}
+.produto h3 {font-family:"Playfair Display",serif;font-size:1.1rem;margin-bottom:7px}
+.produto p {color:var(--cinza);font-size:.8rem;min-height:40px;margin-bottom:12px}
+.preco {font-weight:bold;margin-bottom:13px}
+.produto .botao {width:100%;text-align:center}
+
+.natural {padding:65px 8%;background:var(--creme);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:45px}
+.natural p:not(.etiqueta) {color:var(--cinza);line-height:1.8;margin:15px 0 25px}
+.natural img {width:100%;height:370px;object-fit:cover;border-radius:15px}
+.sobre {text-align:center;padding:75px 8%}
+.sobre p:last-child {color:var(--cinza);max-width:650px;margin:15px auto;line-height:1.9}
+.newsletter {padding:50px 20px;text-align:center;background:var(--creme)}
+.newsletter p {color:var(--cinza);margin:12px 0}
+.newsletter form {display:flex;justify-content:center;gap:10px;margin:20px auto;max-width:500px}
+.newsletter input {min-width:0;flex:1;padding:13px;border:1px solid var(--borda);border-radius:7px;background:var(--cartao);color:var(--texto)}
+
+footer {background:var(--escuro);color:white;text-align:center;padding:40px 20px 20px}
+.logo-footer {color:white}
+.redes {display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin:20px}
+.copyright {border-top:1px solid #ffffff30;padding-top:18px;font-size:.75rem;color:#d4ded4}
+
+.fundo-carrinho {position:fixed;inset:0;background:#0007;z-index:19;display:none}
+.fundo-carrinho.aberto {display:block}
+.carrinho {position:fixed;z-index:20;right:0;top:0;width:min(420px,100%);height:100dvh;padding:24px;background:var(--branco);color:var(--texto);transform:translateX(105%);transition:transform .3s;overflow-y:auto}
+.carrinho.aberto {transform:translateX(0)}
+.topo-carrinho {display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.topo-carrinho h2 {font-size:1.8rem}
+.topo-carrinho button {border:0;background:transparent;color:var(--texto);font-size:1.2rem}
+.item-carrinho {display:grid;grid-template-columns:75px 1fr;gap:12px;padding:15px 0;border-bottom:1px solid var(--borda)}
+.item-carrinho img {width:75px;height:85px;object-fit:cover;border-radius:8px}
+.item-carrinho h3 {font-size:.95rem}
+.item-carrinho p {margin:5px 0}
+.quantidade {display:flex;gap:12px;align-items:center}
+.quantidade button {width:26px;height:26px;border:1px solid var(--borda);background:var(--cartao);color:var(--texto);border-radius:50%}
+.remover {color:#b34c62;border:0;background:transparent;margin-top:5px}
+.total-carrinho {border-top:1px solid var(--borda);padding-top:20px;margin-top:20px}
+.total-carrinho p {display:flex;justify-content:space-between;margin-bottom:15px}
+.total-carrinho .botao {width:100%}
+.total-carrinho small {display:block;margin-top:12px;color:var(--cinza);text-align:center}
+#carrinho-vazio {text-align:center;color:var(--cinza);padding:25px 0}
+#aviso {position:fixed;z-index:30;bottom:20px;left:50%;transform:translateX(-50%);padding:13px 20px;border-radius:8px;background:var(--escuro);color:white;opacity:0;pointer-events:none;transition:opacity .2s;text-align:center;width:max-content;max-width:90%}
+#aviso.visivel {opacity:1}
+
+@media(max-width:1050px) {
+  header {flex-wrap:wrap}
+  header nav {order:3;width:100%;justify-content:center;flex-wrap:wrap}
+  .produtos {grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:700px) {
+  header {padding:14px 4%;gap:10px}
+  #menu-btn {display:block}
+  header nav {display:none;flex-direction:column;align-items:flex-start;padding:15px;background:var(--cartao)}
+  header nav.aberto {display:flex}
+  .acoes {gap:5px}
+  .acoes input {width:105px;padding:8px}
+  .acoes button {padding:8px;font-size:.75rem}
+  .hero {min-height:470px;padding:45px 7%;background-position:60% center}
+  .hero h1 {font-size:2.7rem}
+  .secao {padding:50px 5%}
+  .produtos {grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .produto img {height:165px}
+  .produto-info {padding:11px}
+  .produto h3 {font-size:.98rem}
+  .produto p {font-size:.73rem}
+  .filtros select {width:50%;min-width:0}
+  .natural {grid-template-columns:1fr;padding:45px 6%;gap:25px}
+  .natural img {height:260px}
+  .newsletter form {flex-direction:column}
+}
+@media(max-width:390px) {
+  .logo {font-size:1rem}
+  .logo small {font-size:.43rem}
+  .acoes input {width:80px}
+  .produto img {height:140px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <a href="#inicio" class="logo">❧ BOTANÉA<small>NATURAL SKIN RITUALS</small></a>
+
+  <nav id="menu">
+    <a href="#inicio">Início</a>
+    <a href="#produtos">Produtos</a>
+    <a href="#naturais">Linha natural</a>
+    <a href="#sobre">Nossa história</a>
+  </nav>
+
+  <div class="acoes">
+    <input type="search" id="busca" placeholder="Buscar..." aria-label="Buscar produtos">
+    <button id="tema" aria-label="Alternar tema">☾</button>
+    <button id="abrir-carrinho">Sacola (<span id="contador">0</span>)</button>
+    <button id="menu-btn" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <p class="etiqueta">O CUIDADO QUE VEM DA NATUREZA</p>
+    <h1>Seu ritual de beleza começa na natureza.</h1>
+    <p>Descubra uma nova forma de cuidar da sua pele com produtos inspirados na natureza.</p>
+    <a href="#produtos" class="botao">Explorar produtos</a>
+    <a href="#naturais" class="botao botao-claro">Linha natural</a>
+  </div>
+</section>
+
+<section class="secao" id="produtos">
+  <p class="etiqueta">SELEÇÃO ESPECIAL</p>
+  <h2>Nossos produtos</h2>
+  <p class="subtitulo">Encontre o cuidado ideal para sua rotina.</p>
+
+  <div class="filtros">
+    <select id="categoria" aria-label="Filtrar categoria">
+      <option value="todos">Todas as categorias</option>
+      <option value="Limpeza">Limpeza</option>
+      <option value="Hidratação">Hidratação</option>
+      <option value="Séruns">Séruns</option>
+      <option value="Proteção solar">Proteção solar</option>
+      <option value="Natural">Naturais</option>
+    </select>
+    <select id="ordenacao" aria-label="Ordenar produtos">
+      <option value="destaque">Em destaque</option>
+      <option value="menor">Menor preço</option>
+      <option value="maior">Maior preço</option>
+      <option value="nome">Nome A–Z</option>
+    </select>
+  </div>
+
+  <div class="produtos" id="lista-produtos"></div>
+  <p id="sem-resultados" hidden>Nenhum produto encontrado.</p>
+</section>
+
+<section class="natural" id="naturais">
+  <div>
+    <p class="etiqueta">INSPIRADOS NA NATUREZA</p>
+    <h2>O poder da natureza na sua rotina.</h2>
+    <p>Conheça produtos com ingredientes de origem natural, como aloe vera, aveia e camomila.</p>
+    <button class="botao" id="ver-naturais">Conhecer a linha natural</button>
+  </div>
+  <img src="https://images.unsplash.com/photo-1547887538-e3a2f32cb1cc?auto=format&fit=crop&w=900&q=85" alt="Cosméticos e ingredientes naturais">
+</section>
+
+<section class="sobre" id="sobre">
+  <p class="etiqueta">NOSSA FILOSOFIA</p>
+  <h2>Beleza com propósito.</h2>
+  <p>A BOTANÉA transforma o cuidado diário com a pele em um momento de tranquilidade, autocuidado e conexão com a natureza.</p>
+</section>
+
+<section class="newsletter">
+  <h2>Receba novidades!</h2>
+  <p>Cadastre seu e-mail para conhecer nossas novidades.</p>
+  <form id="form-newsletter">
+    <input type="email" id="email" placeholder="Seu melhor e-mail" required>
+    <button class="botao" type="submit">Cadastrar</button>
+  </form>
+  <p id="mensagem-newsletter" aria-live="polite"></p>
+</section>
+</main>
+
+<footer>
+  <a href="#inicio" class="logo logo-footer">❧ BOTANÉA</a>
+  <p>Beleza natural, cuidado consciente.</p>
+  <div class="redes">
+    <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+    <a href="https://wa.me/" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+    <a href="mailto:contato@botanea.com">E-mail ↗</a>
+  </div>
+  <p class="copyright">© 2026 BOTANÉA. Projeto demonstrativo.</p>
+</footer>
+
+<div class="fundo-carrinho" id="fundo-carrinho"></div>
+<aside class="carrinho" id="carrinho" aria-label="Carrinho de compras">
+  <div class="topo-carrinho">
+    <h2>Sua sacola</h2>
+    <button id="fechar-carrinho" aria-label="Fechar carrinho">✕</button>
+  </div>
+  <div id="itens-carrinho"></div>
+  <p id="carrinho-vazio">Sua sacola está vazia. 💚</p>
+  <div class="total-carrinho">
+    <p>Subtotal: <strong id="subtotal">R$ 0,00</strong></p>
+    <button class="botao" id="finalizar">Finalizar pedido</button>
+    <small>Checkout demonstrativo, sem cobrança real.</small>
+  </div>
+</aside>
+<div id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+const produtos = [
+  {id:1,nome:"Gel de limpeza facial",categoria:"Limpeza",descricao:"Limpeza diária para sua rotina.",preco:39.90,natural:false,imagem:"https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=80"},
+  {id:2,nome:"Hidratante facial",categoria:"Hidratação",descricao:"Ajuda a manter a pele macia.",preco:59.90,natural:false,imagem:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80"},
+  {id:3,nome:"Sérum de vitamina C",categoria:"Séruns",descricao:"Cuidado antioxidante facial.",preco:69.90,natural:false,imagem:"https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80"},
+  {id:4,nome:"Sérum de ácido hialurônico",categoria:"Séruns",descricao:"Hidratação com textura leve.",preco:64.90,natural:false,imagem:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80"},
+  {id:5,nome:"Água micelar",categoria:"Limpeza",descricao:"Para complementar a limpeza facial.",preco:34.90,natural:false,imagem:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80"},
+  {id:6,nome:"Protetor solar facial",categoria:"Proteção solar",descricao:"Proteção diária para a pele.",preco:54.90,natural:false,imagem:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80"},
+  {id:7,nome:"Sabonete de aloe vera",categoria:"Natural",descricao:"Limpeza inspirada na natureza.",preco:29.90,natural:true,imagem:"https://images.unsplash.com/photo-1600428853876-fb5a850b444f?auto=format&fit=crop&w=700&q=80"},
+  {id:8,nome:"Óleo de rosa-mosqueta",categoria:"Natural",descricao:"Óleo cosmético para sua rotina.",preco:44.90,natural:true,imagem:"https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=700&q=80"},
+  {id:9,nome:"Hidratante de camomila",categoria:"Hidratação",descricao:"Cuidado inspirado em ingredientes florais.",preco:49.90,natural:true,imagem:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80"},
+  {id:10,nome:"Esfoliante de aveia",categoria:"Natural",descricao:"Esfoliação suave para o rosto.",preco:32.90,natural:true,imagem:"https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=80"},
+  {id:11,nome:"Bálsamo labial de karité",categoria:"Natural",descricao:"Ajuda a manter os lábios macios.",preco:19.90,natural:true,imagem:"https://images.unsplash.com/photo-1600428853876-fb5a850b444f?auto=format&fit=crop&w=700&q=80"},
+  {id:12,nome:"Máscara de argila verde",categoria:"Natural",descricao:"Um momento especial de autocuidado.",preco:27.90,natural:true,imagem:"https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=700&q=80"}
+];
+
+const moeda = valor => valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const buscar = document.getElementById("busca");
+const categoria = document.getElementById("categoria");
+const ordenacao = document.getElementById("ordenacao");
+const lista = document.getElementById("lista-produtos");
+
+let carrinho = [];
+try {
+  const salvo = JSON.parse(localStorage.getItem("botanea-carrinho") || "[]");
+  if(Array.isArray(salvo)) carrinho = salvo;
+} catch { carrinho = []; }
+
+function salvarCarrinho() {
+  localStorage.setItem("botanea-carrinho",JSON.stringify(carrinho));
+}
+
+function mostrarAviso(mensagem) {
+  const aviso = document.getElementById("aviso");
+  aviso.textContent = mensagem;
+  aviso.classList.add("visivel");
+  clearTimeout(mostrarAviso.timer);
+  mostrarAviso.timer = setTimeout(()=>aviso.classList.remove("visivel"),2500);
+}
+
+function mostrarProdutos() {
+  const termo = buscar.value.trim().toLocaleLowerCase("pt-BR");
+  let encontrados = produtos.filter(p =>
+    (p.nome+" "+p.descricao+" "+p.categoria).toLocaleLowerCase("pt-BR").includes(termo) &&
+    (categoria.value==="todos" || p.categoria===categoria.value)
+  );
+
+  if(ordenacao.value==="menor") encontrados.sort((a,b)=>a.preco-b.preco);
+  if(ordenacao.value==="maior") encontrados.sort((a,b)=>b.preco-a.preco);
+  if(ordenacao.value==="nome") encontrados.sort((a,b)=>a.nome.localeCompare(b.nome,"pt-BR"));
+
+  lista.innerHTML = encontrados.map(p=>`
+    <article class="produto">
+      <img src="${p.imagem}" alt="${p.nome}" loading="lazy">
+      <div class="produto-info">
+        <h3>${p.nome}</h3>
+        <p>${p.descricao}</p>
+        <div class="preco">${moeda(p.preco)}</div>
+        <button class="botao" data-adicionar="${p.id}">Adicionar à sacola</button>
       </div>
-    </header>
+    </article>
+  `).join("");
 
-    <main>
-      <section class="hero">
-        <div class="container hero-content">
-          <div class="hero-text">
-            <p class="eyebrow">Estudante | Afesu/Senai</p>
-            <h1>Olá, eu sou <span>Julia</span></h1>
-            <p class="subtitle">
-              Tenho 16 anos, sou dedicada, curiosa e sempre aberta a aprender coisas novas.
-            </p>
-            <div class="buttons">
-              <a class="btn primary" href="#cursos">Ver cursos</a>
-              <a class="btn secondary" href="#sobre">Sobre mim</a>
-            </div>
-          </div>
+  document.getElementById("sem-resultados").hidden = encontrados.length!==0;
+}
 
-          <div class="hero-card">
-            <div class="card-badge">Perfil</div>
-            <h3>Minha essência</h3>
-            <ul>
-              <li>Comunicativa</li>
-              <li>Facilidade para aprender</li>
-              <li>Adaptável a qualquer ambiente</li>
-              <li>Determinação</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+lista.addEventListener("click",evento=>{
+  const botao = evento.target.closest("[data-adicionar]");
+  if(botao) adicionarCarrinho(Number(botao.dataset.adicionar));
+});
 
-      <section id="sobre" class="section">
-        <div class="container">
-          <div class="section-title">
-            <p>Sobre mim</p>
-            <h2>Uma pessoa em constante evolução</h2>
-          </div>
+function adicionarCarrinho(id) {
+  const produto = produtos.find(p=>p.id===id);
+  if(!produto) return;
+  const item = carrinho.find(p=>p.id===id);
+  if(item) item.quantidade++;
+  else carrinho.push({id,quantidade:1});
+  mostrarCarrinho();
+  mostrarAviso(produto.nome+" adicionado à sacola!");
+}
 
-          <div class="about-box">
-            <p>
-              Meu nome é <strong>Julia</strong>, tenho <strong>16 anos</strong> e sou uma pessoa bem
-              dedicada. Tenho facilidade para aprender e me adapto facilmente a diferentes ambientes.
-              Sou comunicativa, gosto de interagir com as pessoas e me sinto bem em qualquer contexto.
-            </p>
-            <p>
-              Estou sempre aberta a novas oportunidades, curiosa para descobrir mais sobre o mercado de
-              trabalho e animada para começar a construir minha trajetória profissional.
-            </p>
-          </div>
-        </div>
-      </section>
+function mostrarCarrinho() {
+  carrinho = carrinho.filter(i=>produtos.some(p=>p.id===i.id) && Number.isInteger(i.quantidade) && i.quantidade>0);
+  document.getElementById("contador").textContent = carrinho.reduce((s,i)=>s+i.quantidade,0);
+  document.getElementById("carrinho-vazio").hidden = carrinho.length>0;
+  document.querySelector(".total-carrinho").hidden = carrinho.length===0;
 
-      <section id="cursos" class="section alt">
-        <div class="container">
-          <div class="section-title">
-            <p>Cursos</p>
-            <h2>Formação e conhecimentos</h2>
-          </div>
-
-          <div class="courses-grid">
-            <article class="course-card">
-              <div class="icon">📡</div>
-              <h3>Implantação de Redes Locais</h3>
-              <p>48 horas</p>
-            </article>
-
-            <article class="course-card">
-              <div class="icon">📊</div>
-              <h3>Excel Básico com IA Generativa</h3>
-              <p>20 horas</p>
-            </article>
-
-            <article class="course-card">
-              <div class="icon">🤖</div>
-              <h3>Programação com IA Generativa</h3>
-              <p>Aprendizado prático com ferramentas de inteligência artificial</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="hobbies" class="section">
-        <div class="container">
-          <div class="section-title">
-            <p>Hobbies</p>
-            <h2>O que me encanta</h2>
-          </div>
-
-          <div class="hobby-grid">
-            <div class="hobby-item">🎨 Desenhar</div>
-            <div class="hobby-item">🏐 Jogar vôlei</div>
-            <div class="hobby-item">🎵 Música</div>
-            <div class="hobby-item">🍭 Doces</div>
-            <div class="hobby-item">💬 Conversar</div>
-          </div>
-        </div>
-      </section>
-
-      <section id="objetivos" class="section alt">
-        <div class="container">
-          <div class="section-title">
-            <p>Objetivos</p>
-            <h2>Meus próximos passos</h2>
-          </div>
-
-          <div class="goals-box">
-            <p>
-              Estou em busca do meu primeiro emprego e quero conhecer mais sobre o mercado de trabalho.
-              Tenho interesse em aprender, crescer profissionalmente e me desenvolver em ambientes que
-              valorizem dedicação e vontade de evoluir.
-            </p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-content">
-        <p>© 2026 Julia</p>
-        <p>Em busca de novas oportunidades</p>
+  document.getElementById("itens-carrinho").innerHTML = carrinho.map(i=>{
+    const p = produtos.find(prod=>prod.id===i.id);
+    return `<div class="item-carrinho">
+      <img src="${p.imagem}" alt="${p.nome}">
+      <div><h3>${p.nome}</h3><p>${moeda(p.preco)}</p>
+      <div class="quantidade">
+        <button data-alterar="${p.id}" data-delta="-1" aria-label="Diminuir">−</button>
+        <span>${i.quantidade}</span>
+        <button data-alterar="${p.id}" data-delta="1" aria-label="Aumentar">+</button>
       </div>
-    </footer>
-  </body>
+      <button class="remover" data-remover="${p.id}">Remover</button></div>
+    </div>`;
+  }).join("");
+
+  const total = carrinho.reduce((s,i)=>s+produtos.find(p=>p.id===i.id).preco*i.quantidade,0);
+  document.getElementById("subtotal").textContent = moeda(total);
+  salvarCarrinho();
+}
+
+document.getElementById("itens-carrinho").addEventListener("click",e=>{
+  const alterar = e.target.closest("[data-alterar]");
+  const remover = e.target.closest("[data-remover]");
+  if(alterar) {
+    const id = Number(alterar.dataset.alterar);
+    const item = carrinho.find(i=>i.id===id);
+    if(item) item.quantidade += Number(alterar.dataset.delta);
+    carrinho = carrinho.filter(i=>i.quantidade>0);
+    mostrarCarrinho();
+  }
+  if(remover) {
+    carrinho = carrinho.filter(i=>i.id!==Number(remover.dataset.remover));
+    mostrarCarrinho();
+    mostrarAviso("Produto removido da sacola.");
+  }
+});
+
+const painel = document.getElementById("carrinho");
+const fundo = document.getElementById("fundo-carrinho");
+function abrirCarrinho(){painel.classList.add("aberto");fundo.classList.add("aberto")}
+function fecharCarrinho(){painel.classList.remove("aberto");fundo.classList.remove("aberto")}
+document.getElementById("abrir-carrinho").addEventListener("click",abrirCarrinho);
+document.getElementById("fechar-carrinho").addEventListener("click",fecharCarrinho);
+fundo.addEventListener("click",fecharCarrinho);
+
+buscar.addEventListener("input",mostrarProdutos);
+categoria.addEventListener("change",mostrarProdutos);
+ordenacao.addEventListener("change",mostrarProdutos);
+
+document.getElementById("ver-naturais").addEventListener("click",()=>{
+  categoria.value="Natural";
+  mostrarProdutos();
+  document.getElementById("produtos").scrollIntoView({behavior:"smooth"});
+});
+
+const tema = document.getElementById("tema");
+function aplicarTema(escuro) {
+  document.body.classList.toggle("escuro",escuro);
+  tema.textContent=escuro?"☀":"☾";
+  localStorage.setItem("botanea-tema",escuro?"escuro":"claro");
+}
+tema.addEventListener("click",()=>aplicarTema(!document.body.classList.contains("escuro")));
+aplicarTema(localStorage.getItem("botanea-tema")==="escuro");
+
+document.getElementById("menu-btn").addEventListener("click",()=>{
+  document.getElementById("menu").classList.toggle("aberto");
+});
+document.querySelectorAll("#menu a").forEach(a=>a.addEventListener("click",()=>{
+  document.getElementById("menu").classList.remove("aberto");
+}));
+
+document.getElementById("form-newsletter").addEventListener("submit",e=>{
+  e.preventDefault();
+  document.getElementById("mensagem-newsletter").textContent="Obrigado pelo interesse! Este formulário é demonstrativo.";
+  document.getElementById("email").value="";
+});
+
+document.getElementById("finalizar").addEventListener("click",()=>{
+  if(!carrinho.length){mostrarAviso("Adicione produtos antes de finalizar.");return;}
+  alert("Pedido demonstrativo!\nTotal: "+document.getElementById("subtotal").textContent+"\nNenhum pagamento foi realizado.");
+});
+
+mostrarProdutos();
+mostrarCarrinho();
+</script>
+</body>
 </html>
